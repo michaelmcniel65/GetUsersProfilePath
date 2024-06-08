@@ -1,0 +1,6 @@
+$usernames = Get-ChildItem -Recurse -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' -Name
+
+$nameCount = ($usernames).Count
+
+for (($i = 0); $i -lt $nameCount; $i++) {Write-Output "`n" ("Name:`t`t`t" + ($usernames[$i]) + "`n" + "ProfileImagePath:`t" + (Get-ItemProperty -Path ('HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\' + $usernames[$i] + '\') | Select -ExpandProperty ProfileImagePath))"`n"}
+
